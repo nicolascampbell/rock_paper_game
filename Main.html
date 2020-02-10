@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>title</title>
+    </head>
+    <body>
+        <script>
+            function computerPlay(){
+                let choice=Math.floor(Math.random()*3)+1;
+                switch(choice){
+                    case 1:
+                        return "paper";
+                        break;
+                    case 2:
+                        return "rock";
+                        break;
+                    case 3:
+                        return "scissors";
+                        break;
+                    default:
+                        return "something went wrong";
+                }
+            }
+            function singleRound(playerSelection,computerSelection){
+                let playerWins="You Win! ";
+                let playerLose="You Lose! ";
+                if(playerSelection.localeCompare(computerSelection)==0){
+                    return "Its a draw";
+                }
+                if(playerSelection.localeCompare("Rock")==0){
+                    if(computerSelection.localeCompare("Scissors")==0){
+                        return playerWins+playerSelection+" beats "+computerSelection;
+                    }else{
+                        return playerlose+computerSelection+" beats "+playerSelection;
+                    }
+                }
+                else if(playerSelection.localeCompare("Scissors"==0)){
+                    if(computerSelection.localeCompare("Paper")==0){
+                        return playerWins+playerSelection+" beats "+computerSelection;
+                    }else{
+                        return playerlose+computerSelection+" beats "+playerSelection;
+                    }
+                }else if(playerSelection.localeCompare("Paper"==0)){
+                    if(computerSelection.localeCompare("Rock")==0){
+                        return playerWins+playerSelection+" beats "+computerSelection;
+                    }else{
+                        return playerlose+computerSelection+" beats "+playerSelection;
+                    }
+                }
+
+            }
+            function game(){
+                let playerSelection;
+                for(i=0;i<5;i++){
+                    playerSelection=window.prompt();
+                    console.log(singleRound(playerSelection,computerPlay()));
+
+                }
+            }
+  
+  
+        </script>
+    </body>
+</html>
