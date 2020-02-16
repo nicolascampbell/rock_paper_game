@@ -19,45 +19,48 @@
                         return "scissors";
                         break;
                     default:
-                        return "something went wrong";
+                        return "something went wrong 1";
                 }
             }
             function singleRound(playerSelection,computerSelection){
-                let playerWins="You Win! ";
-                let playerLose="You Lose! ";
-                if(playerSelection.localeCompare(computerSelection)==0){
-                    return "Its a draw";
+                playerSelection=playerSelection.toLowerCase();
+                let playerWins=playerSelection=="paper"&&computerSelection=="rock"||playerSelection=="scissors"&&computerSelection=="paper"||playerSelection=="rock"&&computerSelection=="scissors";
+                let playerLose=playerSelection=="paper"&&computerSelection=="scissors"||playerSelection=="scissors"&&computerSelection=="rock"||playerSelection=="rock"&&computerSelection=="paper";
+                console.log(playerWins+"y la otra opcion"+playerLose);
+                if(playerSelection!=computerSelection && playerWins){
+                    score+=2;
+                    return "You Win! "+playerSelection+" beats "+computerSelection;
+                }else if(playerLose){
+                    return "You Lose! "+computerSelection+" beats "+playerSelection;
+                }else if(playerSelection==computerSelection){
+                    score++;
+                    return "its a draw";
+                }else{
+                    return "something went wrong 2";
                 }
-                if(playerSelection.localeCompare("Rock")==0){
-                    if(computerSelection.localeCompare("Scissors")==0){
-                        return playerWins+playerSelection+" beats "+computerSelection;
-                    }else{
-                        return playerlose+computerSelection+" beats "+playerSelection;
-                    }
-                }
-                else if(playerSelection.localeCompare("Scissors"==0)){
-                    if(computerSelection.localeCompare("Paper")==0){
-                        return playerWins+playerSelection+" beats "+computerSelection;
-                    }else{
-                        return playerlose+computerSelection+" beats "+playerSelection;
-                    }
-                }else if(playerSelection.localeCompare("Paper"==0)){
-                    if(computerSelection.localeCompare("Rock")==0){
-                        return playerWins+playerSelection+" beats "+computerSelection;
-                    }else{
-                        return playerlose+computerSelection+" beats "+playerSelection;
-                    }
-                }
-
             }
             function game(){
                 let playerSelection;
                 for(i=0;i<5;i++){
                     playerSelection=window.prompt();
                     console.log(singleRound(playerSelection,computerPlay()));
-
+                }
+                if (score>5){
+                    console.log("Player wins!");
+                }else if(score==5){
+                    console.log("Its a draw");
+                }else{
+                    console.log("Player Loses!");
+                }
+                
+            }
+            function debug(){
+                for(i=0;i<5;i++){
+                    game();
+                    score=0;
                 }
             }
+            let score=0;
   
   
         </script>
